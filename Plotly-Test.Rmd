@@ -1,0 +1,24 @@
+---
+title: "State Data using Plotly"
+author: "Shannon Poskus"
+date: "February 10, 2021"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(plotly)
+library(webshot)
+```
+
+## State Data with Plot from plotly
+
+```{r}
+statedata <- as.data.frame(state.x77)
+statedata$State <- row.names(statedata)
+stateChart <- plot_ly(data = statedata, x = ~Population, y = ~Area, z = ~Income , type = "scatter3d", mode = "markers", color = ~Illiteracy, text = ~State)
+stateChart <- stateChart %>% layout(title = 'State Illiteracy Percentage by Income, Population, and Area')
+stateChart
+```
+
+From the state.x77 data set, the 1970 percent of the population that is illiterate by the 1974 per capita income, the 1975 population, and the land area in square miles.
